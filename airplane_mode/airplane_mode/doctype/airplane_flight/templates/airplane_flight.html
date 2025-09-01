@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ doc.airline }}</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    h1 { margin-bottom: 1rem; }
+    .details { margin-top: 1rem; }
+    .details li { margin: 0.5rem 0; }
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #0366d6;
+      color: white;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+    .btn:hover { background: #024a9a; }
+  </style>
+</head>
+<body>
+  <h1>{{ doc.name }}</h1>
+  <h2>Flight Details</h2>
+  <ul class="details">
+    {% set airplane_doc = frappe.get_doc("Airplane", doc.airplane) %}
+    <li><strong>Airline:</strong> {{ airplane_doc.airline }}</li>
+    <li><strong>Route:</strong> {{ doc.source_airport_code }} → {{ doc.destination_airport_code }}</li>
+    <li><strong>Date:</strong> {{ frappe.utils.format_date(doc.date_of_departure, "d MMMM, YYYY") }}</li>
+    <li><strong>Time:</strong> {{ doc.time_of_departure }}</li>
+    <li><strong>Duration:</strong> {{ frappe.utils.format_duration(doc.duration) }}</li>
+  </ul>
+
+  <a href="/book-flight?flight={{ doc.name }}" class="btn">Book Flight</a>
+</body>
+</html>

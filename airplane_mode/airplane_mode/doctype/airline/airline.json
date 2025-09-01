@@ -6,17 +6,14 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_disb",
   "founding_year",
-  "customer_care_number",
   "headquarters",
+  "column_break_kxed",
+  "customer_care_number",
+  "website",
   "amended_from"
  ],
  "fields": [
-  {
-   "fieldname": "section_break_disb",
-   "fieldtype": "Section Break"
-  },
   {
    "fieldname": "founding_year",
    "fieldtype": "Int",
@@ -37,6 +34,16 @@
    "reqd": 1
   },
   {
+   "fieldname": "column_break_kxed",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website",
+   "options": "URL"
+  },
+  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -50,8 +57,13 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2025-08-27 09:37:12.738475",
+ "links": [
+  {
+   "link_doctype": "Airplane",
+   "link_fieldname": "airline"
+  }
+ ],
+ "modified": "2025-08-30 16:22:03.290984",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airline",

@@ -4,6 +4,9 @@
 # import frappe
 from frappe.model.document import Document
 
-
 class FlightPassenger(Document):
-	pass
+     def before_save(self):
+        first = self.first_name or ""
+        last = self.last_name or ""
+        # Always join both if available
+        self.full_name = " ".join([first, last]).strip()

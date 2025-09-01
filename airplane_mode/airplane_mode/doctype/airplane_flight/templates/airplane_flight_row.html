@@ -1,0 +1,67 @@
+<style>
+.flight-row {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-family: Arial, sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flight-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.flight-row b {
+    font-size: 16px;
+    color: #111827;
+}
+
+.flight-row .route {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 4px 0;
+    display: block;
+}
+
+.flight-row .datetime {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 2px 0;
+}
+
+.flight-row .duration {
+    font-size: 14px;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.flight-row a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 6px 12px;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.flight-row a:hover {
+    background: #1e40af;
+}
+</style>
+
+<div class="flight-row">
+	{% set airplane_doc = frappe.get_doc("Airplane", doc.airplane) %}
+    <b>{{ airplane_doc.airline }}</b><br>
+    <span class="route">{{ doc.source_airport_code }} → {{ doc.destination_airport_code }}</span>
+    <div class="datetime"> {{ frappe.utils.format_date(doc.date_of_departure, "d MMMM, YYYY") }} at {{ doc.time_of_departure }}</div>
+    <div class="duration">Duration: {{ frappe.utils.format_duration(doc.duration) }}</div>
+    <a href="/{{ doc.route }}">View Flight</a>
+</div>

@@ -1,49 +1,45 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{airline}-{###}",
- "creation": "2025-08-27 09:28:16.762951",
+ "autoname": "prompt",
+ "creation": "2025-08-28 09:54:30.055633",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  
-  "model",
-  "airline",
-  "capacity"
+  "section_break_ztib",
+  "description",
+  "amended_from"
  ],
  "fields": [
-
   {
-   "fieldname": "model",
+   "fieldname": "section_break_ztib",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Model",
-   "reqd": 1
+   "label": "Description"
   },
   {
-   "fieldname": "airline",
+   "fieldname": "amended_from",
    "fieldtype": "Link",
-   "label": "Airline",
-   "options": "Airline",
-   "reqd": 1
-  },
-  {
-   "fieldname": "capacity",
-   "fieldtype": "Int",
-   "label": "Capacity",
-   "non_negative": 1,
-   "reqd": 1
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Airplane Ticket Add-on Type",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-08-27 09:34:59.450593",
+ "modified": "2025-08-29 09:56:02.827978",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
- "name": "Airplane",
- "naming_rule": "Expression",
+ "name": "Airplane Ticket Add-on Type",
+ "naming_rule": "Set by user",
  "owner": "Administrator",
  "permissions": [
   {

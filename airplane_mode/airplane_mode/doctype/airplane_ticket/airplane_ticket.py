@@ -13,11 +13,13 @@ class AirplaneTicket(Document):
             frappe.throw("Only tickets with status 'Boarded' can be submitted.")
 
     def validate(self):
-        
+       
+     
         self.remove_duplicate_addons()
         self.calculate_total_amount()
 
     def before_insert(self):
+         self.check_flight_availability()
          self.set_seat_number()    
     
     def remove_duplicate_addons(self):
@@ -50,3 +52,10 @@ class AirplaneTicket(Document):
         seat_letter = random.choice(['A', 'B', 'C', 'D', 'E'])
       
         self.seat = f"{seat_number}{seat_letter}"
+
+    def check_flight_availability(self):
+        flight = frappe.get_doc("Airplane Flight", self.flight)
+        count = frappe.db.count("Airplane Ticket", {"flight": self.flight, "status": not "Cancelled"})
+        airplane = frappe.get_doc("Airplane", flight.airplane)
+        if count >= airplane.capacity:
+            frappe.throw("No seats available on this flight.")

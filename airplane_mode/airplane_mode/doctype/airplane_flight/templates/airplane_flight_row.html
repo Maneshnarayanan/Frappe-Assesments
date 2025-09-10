@@ -58,6 +58,7 @@
 </style>
 
 <div class="flight-row">
+    
 	{% set airplane_doc = frappe.get_doc("Airplane", doc.airplane) %}
     <b>{{ airplane_doc.airline }}</b><br>
     <span class="route">{{ doc.source_airport_code }} → {{ doc.destination_airport_code }}</span>

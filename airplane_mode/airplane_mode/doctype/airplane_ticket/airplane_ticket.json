@@ -13,6 +13,7 @@
   "flight",
   "destination_airport_code",
   "seat",
+  "gate_number",
   "section_break_nbeg",
   "add_ons",
   "section_break_zxrd",
@@ -147,13 +148,18 @@
    "fieldtype": "Data",
    "label": "Seat",
    "read_only": 1
+  },
+  {
+   "fieldname": "gate_number",
+   "fieldtype": "Data",
+   "label": "Gate Number"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-08-29 12:04:49.241895",
+ "modified": "2025-09-09 11:17:07.272360",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Ticket",

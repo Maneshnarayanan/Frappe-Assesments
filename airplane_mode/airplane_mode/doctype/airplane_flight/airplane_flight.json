@@ -9,6 +9,7 @@
  "field_order": [
   "section_break_kncu",
   "airplane",
+  "gate_number",
   "column_break_vtxo",
   "status",
   "is_published",
@@ -149,6 +150,11 @@
    "fieldtype": "Table",
    "label": "Flight Crew Members",
    "options": "Flight Crew Members"
+  },
+  {
+   "fieldname": "gate_number",
+   "fieldtype": "Data",
+   "label": "Gate Number"
   }
  ],
  "grid_page_length": 50,
@@ -161,7 +167,7 @@
    "link_fieldname": "flight"
   }
  ],
- "modified": "2025-09-09 11:02:40.217606",
+ "modified": "2025-09-10 15:59:26.315065",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Flight",

@@ -1,27 +1,102 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
  "allow_rename": 1,
- "creation": "2025-09-09 11:59:26.331387",
+ "autoname": "format:{shop_number}",
+ "creation": "2025-08-24 14:27:58.606814",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_12h5",
   "shop_number",
   "shop_name",
-  "column_break_urxx",
-  "status",
-  "airport",
-  "physical_properties_section",
-  "area_sqft",
+  "shop_type",
+  "area",
   "floor",
-  "column_break_rzez",
   "location_notes",
+  "column_break_nyiy",
+  "airport",
+  "status",
+  "publish",
+  "section_break_fqvh",
+  "tenant_details",
+  "column_break_arba",
+  "active_lease",
+  "section_break_tssp",
+  "shop_image",
   "amended_from"
  ],
  "fields": [
   {
-   "fieldname": "section_break_12h5",
+   "fieldname": "column_break_nyiy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "shop_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Shop Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Float",
+   "label": "Area"
+  },
+  {
+   "fieldname": "airport",
+   "fieldtype": "Link",
+   "label": "Airport",
+   "options": "Airport",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Available",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Available\nOccupied\nClosed",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_tssp",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "shop_image",
+   "fieldtype": "Attach Image",
+   "label": "Shop Image"
+  },
+  {
+   "fieldname": "section_break_fqvh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_arba",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tenant_details",
+   "fieldtype": "Link",
+   "label": "Tenant Details",
+   "options": "Tenant"
+  },
+  {
+   "default": "0",
+   "fieldname": "publish",
+   "fieldtype": "Check",
+   "label": "Publish"
+  },
+  {
+   "fieldname": "floor",
+   "fieldtype": "Data",
+   "label": "Floor"
+  },
+  {
+   "fieldname": "location_notes",
+   "fieldtype": "Small Text",
+   "label": "Location notes"
   },
   {
    "fieldname": "shop_number",
@@ -32,49 +107,11 @@
    "unique": 1
   },
   {
-   "fieldname": "shop_name",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Shop Name",
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_urxx",
-   "fieldtype": "Column Break"
-  },
-  {
-   "default": "Available",
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Status",
-   "options": "Available\nOccupied\nClosed",
-   "reqd": 1
-  },
-  {
-   "fieldname": "physical_properties_section",
-   "fieldtype": "Section Break",
-   "label": "Physical Properties"
-  },
-  {
-   "fieldname": "area_sqft",
-   "fieldtype": "Data",
-   "label": "Area Sqft",
-   "reqd": 1
-  },
-  {
-   "fieldname": "floor",
-   "fieldtype": "Data",
-   "label": "Floor"
-  },
-  {
-   "fieldname": "column_break_rzez",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "location_notes",
-   "fieldtype": "Small Text",
-   "label": "Location Notes"
+   "allow_on_submit": 1,
+   "fieldname": "active_lease",
+   "fieldtype": "Link",
+   "label": "Active Lease",
+   "options": "Lease Contract"
   },
   {
    "fieldname": "amended_from",
@@ -87,21 +124,21 @@
    "search_index": 1
   },
   {
-   "fieldname": "airport",
+   "fieldname": "shop_type",
    "fieldtype": "Link",
-   "label": "Airport",
-   "options": "Airport",
-   "reqd": 1
+   "label": "Shop Type",
+   "options": "Shop Type"
   }
  ],
- "grid_page_length": 50,
- "index_web_pages_for_search": 1,
+ "image_field": "shop_image",
+ "is_published_field": "publish",
  "is_submittable": 1,
  "links": [],
- "modified": "2025-09-09 12:25:07.827001",
+ "modified": "2025-09-12 15:32:44.532910",
  "modified_by": "Administrator",
  "module": "Airport Shop Mgmt",
  "name": "Airport Shop",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
@@ -114,12 +151,13 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
-   "submit": 1,
    "write": 1
   }
  ],
  "row_format": "Dynamic",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "shop_name"
 }

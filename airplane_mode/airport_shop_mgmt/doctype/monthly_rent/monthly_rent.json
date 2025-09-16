@@ -1,0 +1,196 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:RNT-{#####}",
+ "creation": "2025-09-10 09:44:22.772292",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_r68b",
+  "contract",
+  "tenant",
+  "shop",
+  "column_break_msdi",
+  "airport",
+  "status",
+  "billing_details_section",
+  "billing_month",
+  "amount",
+  "paid_amount",
+  "column_break_wnwk",
+  "period_start",
+  "period_end",
+  "due_date",
+  "payment_details_section",
+  "payment_date",
+  "payment_reference",
+  "column_break_ukvi",
+  "mode_of_payment",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_r68b",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "contract.tenant",
+   "fieldname": "tenant",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Tenant",
+   "options": "Tenant",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "contract.shop",
+   "fieldname": "shop",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Shop",
+   "options": "Airport Shop",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "shop.airport",
+   "fieldname": "airport",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Airport",
+   "options": "Airport",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Contract",
+   "options": "Lease Contract",
+   "reqd": 1
+  },
+  {
+   "fieldname": "billing_month",
+   "fieldtype": "Data",
+   "label": "Billing Month",
+   "reqd": 1
+  },
+  {
+   "fieldname": "period_start",
+   "fieldtype": "Date",
+   "label": "Period Start",
+   "reqd": 1
+  },
+  {
+   "fieldname": "period_end",
+   "fieldtype": "Date",
+   "label": "Period End",
+   "reqd": 1
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "paid_amount",
+   "fieldtype": "Currency",
+   "label": "Paid Amount",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Unpaid\nPartially Paid\nPaid\nOverdue",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_msdi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_date",
+   "fieldtype": "Date",
+   "label": "Payment Date"
+  },
+  {
+   "fieldname": "payment_reference",
+   "fieldtype": "Data",
+   "label": "Payment Reference"
+  },
+  {
+   "fieldname": "mode_of_payment",
+   "fieldtype": "Link",
+   "label": "Mode Of Payment",
+   "options": "Mode of Payment"
+  },
+  {
+   "fieldname": "billing_details_section",
+   "fieldtype": "Section Break",
+   "label": "Billing Details"
+  },
+  {
+   "fieldname": "column_break_wnwk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "payment_details_section",
+   "fieldtype": "Section Break",
+   "label": "Payment Details"
+  },
+  {
+   "fieldname": "column_break_ukvi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Monthly Rent",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-09-10 13:18:02.642747",
+ "modified_by": "Administrator",
+ "module": "Airport Shop Mgmt",
+ "name": "Monthly Rent",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

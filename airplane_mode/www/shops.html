@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Shops — Airport Shop Mgmt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/airplane_mode/css/shops.css" />
+  <style>
+    /* small fallback styles if CSS missing */
+    .shops-grid { display:flex; flex-wrap:wrap; gap:1rem; }
+    .shop-card { border:1px solid #e0e0e0; padding:1rem; width:260px; border-radius:6px; background:#fff; }
+    .shop-card img { width:100%; height:140px; object-fit:cover; border-radius:4px; }
+    .shop-card h3 { margin:0.5rem 0 0.25rem 0; font-size:1.05rem; }
+    .shop-meta { font-size:0.9rem; color:#444; }
+  </style>
+</head>
+<body>
+  <header style="padding:1rem; border-bottom:1px solid #f0f0f0;">
+    <h1>Airport Shops</h1>
+    <p>Available & occupied shops across airports</p>
+  </header>
+
+  <main style="padding:1rem; max-width:1100px; margin:0 auto">
+    <section>
+      <form method="get" action="/shops" style="margin-bottom:1rem;">
+        <label>Search: 
+          <input type="search" name="q" value="{{ frappe.utils.escape_html(frappe.form_dict.get('q') or '') }}">
+        </label>
+        <label style="margin-left:1rem;">Airport:
+          <select name="airport">
+            <option value="">All</option>
+            {% for ap in frappe.get_all("Airport", fields=["name"], order_by="name") %}
+              <option value="{{ ap.name }}" {% if frappe.form_dict.get('airport')==ap.name %}selected{% endif %}>
+                {{ ap.name }}
+              </option>
+            {% endfor %}
+          </select>
+        </label>
+        <button type="submit">Filter</button>
+      </form>
+
+      <div class="shops-grid">
+        {% if frappe.form_dict.get('q') %}
+          {% set q = frappe.form_dict.get('q') %}
+          {% if frappe.form_dict.get('airport') %}
+            {% set shops = frappe.db.sql(
+              """SELECT name, shop_name, shop_number, airport, status, shop_image, area
+                   FROM `tabAirport Shop`
+                   WHERE (shop_name LIKE %s OR shop_number LIKE %s)
+                     AND publish = 1
+                     AND airport = %s
+                   ORDER BY shop_name ASC
+                   LIMIT 200""",
+              ('%' + q + '%', '%' + q + '%', frappe.form_dict.get('airport')),
+              as_dict=True
+            ) %}
+          {% else %}
+            {% set shops = frappe.db.sql(
+              """SELECT name, shop_name, shop_number, airport, status, shop_image, area
+                   FROM `tabAirport Shop`
+                   WHERE (shop_name LIKE %s OR shop_number LIKE %s)
+                     AND publish = 1
+                   ORDER BY shop_name ASC
+                   LIMIT 200""",
+              ('%' + q + '%', '%' + q + '%'),
+              as_dict=True
+            ) %}
+          {% endif %}
+        {% else %}
+          {% if frappe.form_dict.get('airport') %}
+            {% set shops = frappe.get_all(
+              "Airport Shop",
+              filters={'publish':1, 'airport': frappe.form_dict.get('airport')},
+              fields=["name", "shop_name", "shop_number", "airport", "status", "shop_image", "area"],
+              order_by="shop_name asc",
+              limit_page_length=200
+            ) %}
+          {% else %}
+            {% set shops = frappe.get_all(
+              "Airport Shop",
+              filters={'publish':1},
+              fields=["name", "shop_name", "shop_number", "airport", "status", "shop_image", "area"],
+              order_by="shop_name asc",
+              limit_page_length=200
+            ) %}
+          {% endif %}
+        {% endif %}
+
+        {% if shops %}
+          {% for s in shops %}
+            <article class="shop-card">
+              {% if s.shop_image %}
+                <img src="{{ s.shop_image }}" alt="{{ s.shop_name }}">
+              {% endif %}
+              <h3><a href="/shop?shop={{ s.name | urlencode }}">{{ s.shop_name }}</a></h3>
+              <div class="shop-meta">
+                <strong>Shop #</strong> {{ s.shop_number }}<br>
+                <strong>Airport</strong> {{ s.airport }}<br>
+                <strong>Area</strong> {{ s.area or '—' }}<br>
+                <strong>Status</strong> {{ s.status }}
+              </div>
+              <p style="margin-top:.5rem;"><a href="/shop?shop={{ s.name | urlencode }}">View details</a></p>
+            </article>
+          {% endfor %}
+        {% else %}
+          <p>No shops found.</p>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+
+  <footer style="padding:1rem; border-top:1px solid #f0f0f0; text-align:center;">
+    <small>Airport Shop Managment</small>
+  </footer>
+</body>
+</html>

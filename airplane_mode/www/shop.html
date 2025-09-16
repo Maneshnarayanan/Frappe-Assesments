@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Shop Details — {{ frappe.form_dict.get('shop') or 'Shop' }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/assets/airplane_mode/css/shops.css" />
+</head>
+
+<body>
+    <header style="padding:1rem; border-bottom:1px solid #f0f0f0;">
+        <a href="/shops">&larr; Back to shops</a>
+        <h1>Shop Details</h1>
+    </header>
+
+    <main style="padding:1rem; max-width:900px; margin:0 auto;">
+        {% set shop_name = frappe.form_dict.get('shop') %}
+        {% if not shop_name %}
+        <p>No shop specified. <a href="/shops">Go back</a></p>
+        {% else %}
+        {% set shop = frappe.get_doc("Airport Shop", shop_name) %}
+        {% if not shop %}
+        <p>Shop not found.</p>
+        {% else %}
+        <div style="display:flex; gap:1rem;">
+            <div style="flex:0 0 320px;">
+                {% if shop.shop_image %}
+                <img src="{{ shop.shop_image }}" alt="{{ shop.shop_name }}" style="width:100%; border-radius:6px;">
+                {% endif %}
+            </div>
+            <div style="flex:1;">
+                <h2>{{ shop.shop_name }} <small>({{ shop.shop_number }})</small></h2>
+                <p><strong>Airport:</strong> {{ shop.airport }}</p>
+                <p><strong>Area:</strong> {{ shop.area or '—' }}</p>
+                <p><strong>Floor:</strong> {{ shop.floor or '—' }}</p>
+                <p><strong>Status:</strong> {{ shop.status }}</p>
+                <p><strong>Active Lease:</strong>
+                    {% if shop.active_lease %}
+                    <a href="/desk#Form/Lease Contract/{{ shop.active_lease }}">{{ shop.active_lease }}</a>
+                    {% else %}
+                    None
+                    {% endif %}
+                </p>
+
+
+                <p style="margin-top:1rem;">
+                   <a class="button" href="/shop-lead/new?shop={{ shop.shop_name}} at {{shop.airport | urlencode }}">
+                        I'm interested to lease this shop (Submit Lead)
+                    </a>
+                </p>
+
+                </p>
+            </div>
+        </div>
+
+        {% if shop.location_notes %}
+        <section style="margin-top:1.5rem;">
+            <h3>Location notes</h3>
+            <div>{{ shop.location_notes }}</div>
+        </section>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+    </main>
+
+    <footer style="padding:1rem; border-top:1px solid #f0f0f0; text-align:center;">
+        <small>Airport Shop Managment</small>
+    </footer>
+</body>
+
+</html>

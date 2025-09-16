@@ -1,0 +1,98 @@
+{
+    "actions": [],
+    "allow_rename": 1,
+    "creation": "2025-09-10 10:55:19.203874",
+    "doctype": "DocType",
+    "engine": "InnoDB",
+    "field_order": [
+        "section_break_wvtw",
+        "amended_from",
+        "default_rent_amount",
+        "enable_rent_reminders",
+        "reminder_day_of__month",
+        "grace_days",
+        "default_email_template",
+        "default_due_days",
+        "cc_email"
+    ],
+    "fields": [
+        {
+            "fieldname": "amended_from",
+            "fieldtype": "Link",
+            "label": "Amended From",
+            "no_copy": 1,
+            "options": "Airport Shop Settings",
+            "print_hide": 1,
+            "read_only": 1,
+            "search_index": 1
+        },
+        {
+            "fieldname": "default_rent_amount",
+            "fieldtype": "Currency",
+            "label": "Default Rent Amount"
+        },
+        {
+            "default": "0",
+            "fieldname": "enable_rent_reminders",
+            "fieldtype": "Check",
+            "label": "Enable Rent Reminders"
+        },
+        {
+            "default": "25",
+            "fieldname": "reminder_day_of__month",
+            "fieldtype": "Int",
+            "label": "Reminder Day Of  Month"
+        },
+        {
+            "default": "5",
+            "fieldname": "grace_days",
+            "fieldtype": "Int",
+            "label": "Grace Days"
+        },
+        {
+            "fieldname": "default_email_template",
+            "fieldtype": "Small Text",
+            "label": "Default Email Template"
+        },
+        {
+            "default": "7",
+            "fieldname": "default_due_days",
+            "fieldtype": "Int",
+            "label": "default_due_days"
+        },
+        {
+            "fieldname": "cc_email",
+            "fieldtype": "Data",
+            "label": "cc_email"
+        }
+    ],
+    "grid_page_length": 50,
+    "index_web_pages_for_search": 1,
+    "editable_grid": 1,
+    "issingle": 1,
+    "links": [],
+    "modified": "2025-09-10 11:55:14.292111",
+    "modified_by": "Administrator",
+    "module": "Airport Shop Mgmt",
+    "name": "Airport Shop Settings",
+    "owner": "Administrator",
+    "permissions": [
+        {
+            "create": 1,
+            "delete": 1,
+            "email": 1,
+            "export": 1,
+            "print": 1,
+            "read": 1,
+            "report": 1,
+            "role": "System Manager",
+            "share": 1,
+            "submit": 1,
+            "write": 1
+        }
+    ],
+    "row_format": "Dynamic",
+    "sort_field": "modified",
+    "sort_order": "DESC",
+    "states": []
+}

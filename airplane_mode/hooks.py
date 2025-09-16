@@ -44,7 +44,7 @@ app_license = "mit"
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
-# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+doctype_list_js = {"Monthly Rent" : "public/js/send_mail.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
@@ -148,23 +148,17 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"airplane_mode.tasks.all"
-# 	],
-# 	"daily": [
-# 		"airplane_mode.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"airplane_mode.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"airplane_mode.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"airplane_mode.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"cron": {
+        # Generate next-month or current-month rents on 1st (and retry on 2nd)
+        "0 0 1 * *": ["airplane_mode.airport_shop_mgmt.utils.rent.generate_monthly_rents"],
+        "0 3 1 * *": ["airplane_mode.airport_shop_mgmt.utils.rent.generate_monthly_rents"],
+        # Send reminders on configurable day (we’ll read the setting and act only then)
+        "0 9 * * *": ["airplane_mode.airport_shop_mgmt.utils.rent.process_rent_reminders_daily"],
+        # Mark Overdues Daily
+        "0 9 * * *": ["airplane_mode.airport_shop_mgmt.utils.rent.mark_overdue_rents_daily"]
+    }
+}
 
 # Testing
 # -------

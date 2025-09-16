@@ -10,22 +10,16 @@
   "code",
   "city",
   "country",
+  "column_break_sjha",
+  "total_shops",
+  "occupied_shops",
+  "available_shops",
   "amended_from"
  ],
  "fields": [
   {
    "fieldname": "section_break_m5gg",
    "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Airport",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
   },
   {
    "fieldname": "code",
@@ -45,13 +39,56 @@
    "fieldtype": "Data",
    "label": "Country",
    "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "total_shops",
+   "fieldtype": "Int",
+   "label": "Total Shops",
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "occupied_shops",
+   "fieldtype": "Int",
+   "label": "Occupied Shops",
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "available_shops",
+   "fieldtype": "Int",
+   "label": "Available Shops",
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_sjha",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Airport",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2025-08-27 09:52:13.430711",
+ "links": [
+  {
+   "link_doctype": "Airport Shop",
+   "link_fieldname": "airport"
+  }
+ ],
+ "modified": "2025-09-10 14:52:02.330603",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airport",

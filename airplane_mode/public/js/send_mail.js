@@ -1,6 +1,6 @@
 frappe.listview_settings['Monthly Rent'] = {
     onload(listview) {
-        listview.page.add_menu_item(__('Send Reminder Email'), function() {
+        listview.page.add_action_item(__('Send Reminder Email'), function() {
             let selected = listview.get_checked_items();
 
             if (!selected.length) {
@@ -9,7 +9,7 @@ frappe.listview_settings['Monthly Rent'] = {
             }
 
             frappe.call({
-                method: "airport_mode.airport_mode.doctype.monthly_rent.monthly_rent.send_reminder_emails",
+                method: "airplane_mode.airport_shop_mgmt.doctype.monthly_rent.monthly_rent.send_reminder_emails",
                 args: {
                     rents: selected.map(d => d.name)
                 },
@@ -23,3 +23,4 @@ frappe.listview_settings['Monthly Rent'] = {
         });
     }
 };
+

@@ -16,24 +16,9 @@ frappe.ui.form.on("Airplane Flight", {
                     ],
                     primary_action_label: 'Update',
                     async primary_action(values) {
-                        // set and save gate number
                         await frm.set_value('gate_number', values.new_gate);
                         await frm.save_or_update();
-
-                        // call server-side function to trigger background job
-                        frappe.call({
-                            method: "airplane_mode.airplane_mode.doctype.airplane_flight.airplane_flight.update_ticket_gates",
-                            args: {
-                                flight: frm.doc.name,
-                                gate_number: values.new_gate
-                            },
-                            callback: () => {
-                                frappe.msgprint(
-                                    __('Gate number updated to {0}. Ticket updates have been queued.', [values.new_gate])
-                                );
-                            }
-                        });
-
+                        frappe.msgprint(__('Gate number updated to {0}. Ticket updates have been queued.', [values.new_gate]));
                         d.hide();
                     }
                 });
@@ -42,3 +27,4 @@ frappe.ui.form.on("Airplane Flight", {
         }
     }
 });
+

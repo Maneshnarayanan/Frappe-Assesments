@@ -137,13 +137,15 @@ doctype_list_js = {"Monthly Rent" : "public/js/send_mail.js"}
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+
+doc_events = {
+    "Airplane Flight": {
+        "on_update": "airplane_mode.airplane_mode.doctype.airplane_flight.airplane_flight.enqueue_ticket_gate_update"
+    }
+
+    }
+
+
 
 # Scheduled Tasks
 # ---------------
@@ -236,3 +238,9 @@ scheduler_events = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = [
+    {
+        "doctype": "Shop Type",
+        "filters": {"shop_type_name": ["in", ["Stall", "Walk-through", "Normal"]]}
+    }
+]
